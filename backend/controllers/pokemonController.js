@@ -35,8 +35,25 @@ const addPokemon = asyncHandler(async (req, res) => {
 });
 
 const updatePokemon = asyncHandler(async (req, res) => {
-  res.json({ message: `Update goal ${req.params.id}` });
+
+  const pokemon = await Pokemon.findById(req.params.id);
+
+  if (pokemon) {
+    pokemon.idPokedex = req.body.idPokedex;
+    pokemon.name = req.body.name ;
+    pokemon.height = req.body.height ;
+    pokemon.weight = req.body.weight;
+    pokemon.statistiques = req.body.statistiques ;
+    pokemon.type = req.body.type ;
+  };
+
+  await pokemon.save();
+
+  res.status(200).json(pokemon);
 });
+
+
+
 
 const deletePokemon = asyncHandler(async (req, res) => {
   const pokemon = await Pokemon.findById(req.params.id);
