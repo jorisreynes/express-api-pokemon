@@ -1,4 +1,3 @@
-
 const asyncHandler = require('express-async-handler')
 
 const Pokemon = require('../models/pokemonModel')
@@ -25,10 +24,10 @@ const updatePokemon = asyncHandler(async (req, res) => {
 
 const deletePokemon = asyncHandler(async (req, res) => {
 
-
-    const pokemon = await Pokemon.remove({ text: req.body.text })
-
-    //res.json({ message: `Delete goal ${req.params.id}` })
+    const index = req.params.id
+    const pokemon = await Pokemon.remove({index})
+    res.status(200).json(pokemon) 
+    // res.json({ message: `Delete goal ${req.params.id}` })
 })
 
 module.exports = {
