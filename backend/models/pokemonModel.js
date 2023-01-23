@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const Types = require("../models/typesModel");
+
 
 const pokemonSchema = mongoose.Schema(
   {
@@ -24,7 +26,7 @@ const pokemonSchema = mongoose.Schema(
       required: [true, "Please add a value"],
     },
     type: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId, ref: 'Types',
       required: [true, "please add a type"],
     },
   },
