@@ -7,6 +7,16 @@ const getPokemons = asyncHandler(async (req, res) => {
   res.status(200).json(pokemons);
 });
 
+const getPokemon = asyncHandler(async (req, res) => {
+  const pokemon = await Pokemon.findById(req.params.id);
+  if (pokemon) {
+    res.status(200).json(pokemon);
+  } else {
+    res.status(404);
+    throw new Error("Pokemon not found");
+  }
+});
+
 const addPokemon = asyncHandler(async (req, res) => {
   if (!req.body.name) {
     res.status(400);
@@ -43,6 +53,7 @@ const deletePokemon = asyncHandler(async (req, res) => {
 
 module.exports = {
   getPokemons,
+  getPokemon,
   addPokemon,
   updatePokemon,
   deletePokemon,
