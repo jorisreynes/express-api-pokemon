@@ -24,10 +24,18 @@ const updatePokemon = asyncHandler(async (req, res) => {
 
 const deletePokemon = asyncHandler(async (req, res) => {
 
-    const index = req.params.id
-    const pokemon = await Pokemon.remove({index})
+    const pokemon = await Pokemon.findById(req.params.id)
+    if (pokemon) {
+        await pokemon.remove()
+        res.json({ message: 'Pokemon removed' })
+    }
+    else {
+        res.status(404)
+        throw new Error('Pokemon not found')
+    }
+
     res.status(200).json(pokemon) 
-    // res.json({ message: `Delete goal ${req.params.id}` })
+
 })
 
 module.exports = {
