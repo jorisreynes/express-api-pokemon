@@ -22,6 +22,7 @@ app.use(express.urlencoded({extended: true}))
 //app.get('/api/goals', (req, res) => {res.send('Get goals')})
 app.use('/api/pokemons', require('./routes/pokemonRoutes'))
 app.use('/api/types', require('./routes/typeRoutes'))
+app.use('/api/competences', require('./routes/competenceRoutes'))
 
 // Lancement du serveur
 app.listen(port, () => {console.log(`Server started on ${port}`)})
