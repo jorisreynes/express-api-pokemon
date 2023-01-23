@@ -7,7 +7,7 @@ const competenceSchema = mongoose.Schema({
     required: [true, "Please add a name"],
   },
   description: {
-    type: Number,
+    type: String,
     required: [true, "Please add a value"],
   },
   power: {
