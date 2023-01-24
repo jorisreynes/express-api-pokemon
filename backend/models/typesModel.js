@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 
 const typeSchema = mongoose.Schema({
-    name: {
+    type: {
       type: String,
       required: [true, "Please add a name"],
     },

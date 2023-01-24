@@ -18,12 +18,12 @@ const getType = asyncHandler(async (req, res) => {
 });
 
 const addType = asyncHandler(async (req, res) => {
-  if (!req.body.name) {
+  if (!req.body.type) {
     res.status(400);
     throw new Error("Please write a type");
   }
   const type = await Type.create({
-    name: req.body.name
+    type: req.body.type
   });
   //res.json({ message: `Add goal ${req.body.text}`  })
   res.status(200).json(type);
