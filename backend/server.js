@@ -3,6 +3,8 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
 const port = process.env.PORT
+const cors = require('cors');
+
 
 // Couleur dans la console
 const colors = require('colors')
@@ -18,6 +20,9 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 // Routes
 //app.get('/api/goals', (req, res) => {res.send('Get goals')})
 app.use('/api/pokemons', require('./routes/pokemonRoutes'))
