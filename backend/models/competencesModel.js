@@ -23,7 +23,7 @@ const competenceSchema = mongoose.Schema({
     required: [true, "Please add a value"],
   },
   type: {
-    type: String,
+    type: [mongoose.Schema.Types.ObjectId], ref: 'Types',
     required: [true, "please add a type"],
   },
 });

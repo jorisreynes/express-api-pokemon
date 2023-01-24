@@ -1,6 +1,8 @@
 const asyncHandler = require("express-async-handler");
 
+//const mongoose = require("mongoose");
 const Pokemon = require("../models/pokemonModel");
+const Type = require("../models/typesModel");
 
 const getPokemons = asyncHandler(async (req, res) => {
   let pokemons = await Pokemon.find({});
@@ -22,15 +24,17 @@ const addPokemon = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Please write a name");
   }
+
+  let pokeType = await Type.findById(req.body.type);
+
   const pokemon = await Pokemon.create({
     idPokedex: req.body.idPokedex,
     name: req.body.name,
     height: req.body.height,
     weight: req.body.weight,
     statistiques: req.body.statistiques,
-    type: req.body.type,
+    type: pokeType
   });
-  //res.json({ message: `Add goal ${req.body.text}`  })
   res.status(200).json(pokemon);
 });
 

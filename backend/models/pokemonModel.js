@@ -22,11 +22,24 @@ const pokemonSchema = mongoose.Schema(
       required: [true, "Please add a value"],
     },
     statistiques: {
-      type: String,
-      required: [true, "Please add a value"],
+      type: 
+      {
+        "total": Number,
+        "hp": Number,
+        "attack": Number,
+        "defense": Number,
+        "sp_atk": Number,
+        "sp_def": Number,
+        "speed": Number
+      },
+      required: [true, 'Please add a stats value']
+
+      //type: String,
+      //required: [true, "Please add a value"],
     },
     type: {
-      type: mongoose.Schema.Types.ObjectId, ref: 'Types',
+      type: [mongoose.Schema.Types.ObjectId], ref: 'Type',
+      //type: String,
       required: [true, "please add a type"],
     },
   },
