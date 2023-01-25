@@ -9,7 +9,9 @@ const getCompetences = asyncHandler(async (req, res) => {
 
 const getCompetence = asyncHandler(async (req, res) => {
   const competence = await Competence.findById(req.params.id);
+  let type = await Type.findById(pokemon.type);
   if (competence) {
+    competence.type = type;
     res.status(200).json(competence);
   } else {
     res.status(404);

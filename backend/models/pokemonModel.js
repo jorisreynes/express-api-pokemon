@@ -38,6 +38,7 @@ const pokemonSchema = mongoose.Schema(
       //required: [true, "Please add a value"],
     },
     type: {
+      //type: [mongoose.Schema.Types.ObjectId], ref: 'Types',
       type: [mongoose.Schema.Types.ObjectId], ref: 'Types',
       //type: String,
       required: [true, "please add a type"],
