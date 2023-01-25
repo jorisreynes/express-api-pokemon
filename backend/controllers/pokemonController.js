@@ -48,7 +48,8 @@ const addPokemon = asyncHandler(async (req, res) => {
     weight: req.body.weight,
     statistiques: req.body.statistiques,
     type: pokeType,
-    competence : pokeCompetence
+    competence : pokeCompetence,
+    photo : req.body.photo
 
   });
   res.status(200).json(pokemon);

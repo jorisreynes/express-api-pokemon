@@ -42,6 +42,11 @@ const pokemonSchema = mongoose.Schema(
       type: [mongoose.Schema.Types.ObjectId], ref: 'Competences',
       required: [true, "please add a type"],
     },
+    //
+    photo: {
+      type: String,
+      required: [true, "Please add a value"],
+    }
   },
   {
     timestamps: true,
