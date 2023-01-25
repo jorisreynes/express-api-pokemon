@@ -4,6 +4,12 @@ const Type = require("../models/typesModel");
 
 const getCompetences = asyncHandler(async (req, res) => {
   let competences = await Competence.find({});
+
+  for (const competence in competences) {
+    let type = await Type.findById(competences[competence].type);
+    competences[competence].type = type; 
+  }
+
   res.status(200).json(competences);
 });
 

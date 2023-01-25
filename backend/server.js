@@ -20,9 +20,10 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.use(cors({
-    origin: 'http://localhost:3000'
-}));
+//app.use(cors({
+    //origin: 'http://localhost:3000'
+//}));
+
 // Routes
 //app.get('/api/goals', (req, res) => {res.send('Get goals')})
 app.use('/api/pokemons', require('./routes/pokemonRoutes'))
