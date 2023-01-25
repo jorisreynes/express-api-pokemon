@@ -44,6 +44,7 @@ const pokemonSchema = mongoose.Schema(
     },
     //
     photo: {
+      //type: Image,
       type: String,
       required: [true, "Please add a value"],
     }
