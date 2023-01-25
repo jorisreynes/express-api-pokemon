@@ -3,6 +3,7 @@ const asyncHandler = require("express-async-handler");
 //const mongoose = require("mongoose");
 const Pokemon = require("../models/pokemonModel");
 const Type = require("../models/typesModel");
+const Competence = require("../models/competencesModel");
 
 const getPokemons = asyncHandler(async (req, res) => {
   
@@ -10,8 +11,9 @@ const getPokemons = asyncHandler(async (req, res) => {
 
   for (const pokemon in pokemons) {
     let type = await Type.findById(pokemons[pokemon].type);
-    pokemons[pokemon].type = type; 
-    //console.log(`${pokemons[pokemon]} ${type}`);
+    let competence = await Competence.findById(pokemons[pokemon].competence);
+    pokemons[pokemon].type = type;
+    pokemons[pokemon].competence = competence 
   }
   res.status(200).json(pokemons);
 });
@@ -19,8 +21,10 @@ const getPokemons = asyncHandler(async (req, res) => {
 const getPokemon = asyncHandler(async (req, res) => {
   const pokemon = await Pokemon.findById(req.params.id);
   let type = await Type.findById(pokemon.type);
+  let competence = await Competence.findById(pokemon.competence);
   if (pokemon) {
     pokemon.type = type;
+    pokemon.competence = competence
     res.status(200).json(pokemon);
   } else {
     res.status(404);
@@ -35,6 +39,7 @@ const addPokemon = asyncHandler(async (req, res) => {
   }
 
   let pokeType = await Type.findById(req.body.type);
+  let pokeCompetence = await Competence.findById(req.body.competence)
 
   const pokemon = await Pokemon.create({
     idPokedex: req.body.idPokedex,
@@ -42,7 +47,9 @@ const addPokemon = asyncHandler(async (req, res) => {
     height: req.body.height,
     weight: req.body.weight,
     statistiques: req.body.statistiques,
-    type: pokeType
+    type: pokeType,
+    competence : pokeCompetence
+
   });
   res.status(200).json(pokemon);
 });

@@ -33,14 +33,13 @@ const pokemonSchema = mongoose.Schema(
         "speed": Number
       },
       required: [true, 'Please add a stats value']
-
-      //type: String,
-      //required: [true, "Please add a value"],
     },
     type: {
-      //type: [mongoose.Schema.Types.ObjectId], ref: 'Types',
       type: [mongoose.Schema.Types.ObjectId], ref: 'Types',
-      //type: String,
+      required: [true, "please add a type"],
+    },
+    competence: {
+      type: [mongoose.Schema.Types.ObjectId], ref: 'Competences',
       required: [true, "please add a type"],
     },
   },
